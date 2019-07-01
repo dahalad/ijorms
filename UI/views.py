@@ -24,7 +24,7 @@ from bokeh.models.widgets import Panel, Tabs
 
 
 def index(request):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return render(request, 'login.html')
     else:
         availJobs = Job.objects.filter(deadline__gt=timezone.now())
@@ -123,7 +123,7 @@ def register(request):
 
 
 def vitae(request, update):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return render(request, 'login.html')
     else:
         instance = Applicant.objects.get(applicant=request.user)
@@ -165,7 +165,7 @@ def vitae(request, update):
 
 
 def details(request,id):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return render(request, 'login.html')
     else:
         applied = False
@@ -224,7 +224,7 @@ def details(request,id):
 
 
 def add(request):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return render(request, 'login.html')
     else:
         user = request.user

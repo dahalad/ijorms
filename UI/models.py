@@ -29,7 +29,7 @@ def seven_days_hence():
 
 # Details of applicant
 class Applicant(models.Model):
-    applicant = models.OneToOneField(User)
+    applicant = models.OneToOneField(User, on_delete=models.CASCADE)
     resume = models.FileField(upload_to=user_directory_path)
     photo = models.ImageField()
     applicant_Skill = models.TextField(null=True, blank=True)
@@ -64,9 +64,9 @@ class Job(models.Model):
 
 # relationship between a job and the applicant
 class JobApplicant(models.Model):
-    job = models.ForeignKey('Job')
+    job = models.ForeignKey('Job', on_delete=models.CASCADE)
     appliedAt = models.DateTimeField(default=timezone.now)
-    applicant = models.ForeignKey('Applicant')
+    applicant = models.ForeignKey('Applicant', on_delete=models.CASCADE)
     skillScore = models.DecimalField(max_digits=7, decimal_places=4, default=0.0)
     workExpScore = models.DecimalField(max_digits=7, decimal_places=4, default=0.0)
     educationScore = models.DecimalField(max_digits=7, decimal_places=4, default=0.0)
